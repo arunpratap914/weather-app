@@ -11,18 +11,16 @@ weatherForm.addEventListener("submit", e => {
   msg1.textContent = "Loading...";
   msg2.textContent = "";
   msg3.textContent = "";
-  fetch("http://127.0.0.1:3000/weather?address=" + search.value).then(
-    response => {
-      response.json().then(data => {
-        if (data.error) {
-          console.log(data.error);
-        } else {
-          //console.log(data);
-          msg1.textContent = "Location : " + data.location;
-          msg2.textContent = "Summary : " + data.summary;
-          msg3.textContent = "Temprature : " + data.temprature;
-        }
-      });
-    }
-  );
+  fetch("/weather?address=" + search.value).then(response => {
+    response.json().then(data => {
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        //console.log(data);
+        msg1.textContent = "Location : " + data.location;
+        msg2.textContent = "Summary : " + data.summary;
+        msg3.textContent = "Temprature : " + data.temprature;
+      }
+    });
+  });
 });
